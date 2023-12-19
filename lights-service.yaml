@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lights
+spec:
+  selector:
+    app: lights-deployment
+  ports:
+    - port: 3001
+      targetPort: 3000
+  type: LoadBalancer
