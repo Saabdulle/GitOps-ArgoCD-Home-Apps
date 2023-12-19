@@ -4,6 +4,7 @@ metadata:
   name: status-deployment
   namespace: argocd
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: status-deployment
