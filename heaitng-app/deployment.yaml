@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heating-deployment
+  namespace: argocd
+spec:
+  selector:
+    matchLabels:
+      app: heating-deployment
+  template:
+    metadata:
+      labels:
+        app: heating-deployment
+    spec:
+      containers:
+        - name: heating-deployment
+          image: saeedabdulle/heating:1.0.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000

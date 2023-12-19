@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: status-deployment
+  namespace: argocd
+spec:
+  selector:
+    matchLabels:
+      app: status-deployment
+  template:
+    metadata:
+      labels:
+        app: status-deployment
+    spec:
+      containers:
+      - name: status-deployment
+        image: saeedabdulle/status:1.0.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        env: 
+          - name: LIGHTS_SERVICE
+            value: http://lights.default.svc.cluster.local:3001
+          - name: HEATING_SERVICE
+            value: http://heating.default.svc.cluster.local:3000
